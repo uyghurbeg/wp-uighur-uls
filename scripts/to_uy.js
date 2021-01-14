@@ -1532,7 +1532,4 @@ function naddchar(event)
   return true;
 }
 
- chrome.extension.sendMessage({
-                action: "getSource",
-                source: do_convert('uly','unicode')
- });
+do_convert("unicode", "uly");
