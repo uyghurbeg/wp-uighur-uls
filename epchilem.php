@@ -23,12 +23,15 @@ function insert_convert_file()
 {
      $uls = $_SESSION['uls'];
      if ($uls && $uls == 'ul') {
-     wp_register_script('to_usy', plugins_url('scripts/to_usy.js'), __FILE__);
-          wp_enqueue_script('to_usy');    
+     wp_register_script('to_usy', plugins_url('/epchilem/scripts/to_uly.js'), array(), false, true);
+          wp_enqueue_script('to_uly');    
      } else if ($uls && $uls == 'us') {
-          wp_register_script('to_usy', plugins_url('scripts/to_usy.js'), __FILE__);
+          wp_register_script('to_usy', plugins_url('/epchilem/scripts/to_usy.js'), array(), false, true);
           wp_enqueue_script('to_usy');
      }
+
+     wp_register_script('to_uly', plugins_url('/epchilem/scripts/to_uly.js'), array(), false, true);
+     wp_enqueue_script('to_uly');
 }
 add_action('wp_enqueue_scripts', 'insert_convert_file');
 

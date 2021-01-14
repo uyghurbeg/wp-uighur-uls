@@ -73,9 +73,7 @@ function do_convert(sf,df) {
    str = str.replace(/ltr/gi,"rtl");
    str = str.replace(/left/gi,"right");
    str = '<div style="direction:rtl;text-align:justify;">'+str+'</div>'
-   //set_dest_text(str);
    document.body.innerHTML=str
-   console.log(str)
 }
 
 function to_unicode ( from, str ) {

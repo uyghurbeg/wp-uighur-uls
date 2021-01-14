@@ -70,12 +70,10 @@ function do_convert(sf,df) {
 
    str = to_unicode(sf, s);
    str = from_unicode(df, str);
-   //set_dest_text(str);
    str = str.replace(/ltr/gi,"rtl");
    str = str.replace(/left/gi,"right");
    str = '<div style="direction:rtl;text-align:justify;">'+str+'</div>';
    document.body.innerHTML=str
-   console.log(str)
 }
 
 function to_unicode ( from, str ) {
