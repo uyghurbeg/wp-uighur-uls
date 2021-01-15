@@ -1,12 +1,12 @@
 <?php
 /*
-     Plugin Name: wp-uighur-uls
+     Plugin Name: WP-Uighur-ULS
      Plugin URI: https://uyghur.blog
      Description: ئۇيغۇر ئەرەب ئېلىپبەسىنى ئۇيغۇر لاتىن ئېلىپبەسى ۋە ئۇيغۇر كىرىل ئېلىپبەسىگە ئايلاندۇرىدىغان قىستۇرما | A plugin to convert Uyghur Arabic Alphabet to Uyghur Laten Alphabet and Uyghur Crillic Alphabet
      Author: Uyghurbeg
      Author URI: https://uyghur.blog
      Version 0.0.1
-     Text Domain: wp-uighur-uls
+     Text Domain: WP-Uighur-ULS
      License: GPLv2
 */
 
@@ -26,10 +26,10 @@ function insert_convert_file()
 }
 add_action('wp_enqueue_scripts', 'insert_convert_file');
 
-function insert_epchilem_div_before_post($content)
+function insert_before_post($content)
 {
      if (is_single()) {
-          $beforecontent = '<div class="epchilem" style=" padding-right: 60px; padding-top: 6px;  text-transform: lowercase; !important"> <a href="?uls=us">&#1059;&#1081;&#1171;&#1091;&#1088;&#1095;&#1241;</a> | <a href="?uls=ul">&#85;&#121;&#103;&#104;&#117;&#114;&#99;&#104;&#101;</a> | <a href="?uls=uu">&#1574;&#1735;&#1610;&#1594;&#1735;&#1585;&#1670;&#1749;</a> </div>';
+          $beforecontent = '<div class="wp-uighur-uls" style=" padding-right: 60px; padding-top: 6px;  text-transform: lowercase; !important"> <a href="?uls=us">&#1059;&#1081;&#1171;&#1091;&#1088;&#1095;&#1241;</a> | <a href="?uls=ul">&#85;&#121;&#103;&#104;&#117;&#114;&#99;&#104;&#101;</a> | <a href="?uls=uu">&#1574;&#1735;&#1610;&#1594;&#1735;&#1585;&#1670;&#1749;</a> </div>';
      } else {
           $beforecontent = '';
      }
@@ -37,7 +37,7 @@ function insert_epchilem_div_before_post($content)
 
      return $fullcontent;
 }
-add_filter('the_content', 'insert_epchilem_div_before_post');
+add_filter('the_content', 'insert_before_post');
 
 function setup_session()
 {
@@ -60,21 +60,21 @@ function convert_alphabet()
 {
      if ($_SESSION['uls'] == "ul") {
           //Register convert script
-          wp_register_script('to_uly', plugins_url('/epchilem/scripts/to_uly.js'), array(), false, true);
+          wp_register_script('to_uly', plugins_url('/wp-uighur-uls/scripts/to_uly.js'), array(), false, true);
           wp_enqueue_script('to_uly');
           //Register converted alphabet style
           wp_register_style('ltr-style', get_template_directory().'/ltr.css');
           wp_enqueue_style('ltr-style');
      } else if ($_SESSION['uls'] == "us") {
           //Register convert script
-          wp_register_script('to_us', plugins_url('/epchilem/scripts/to_usy.js'), array(), false, true);
+          wp_register_script('to_us', plugins_url('/wp-uighur-uls/scripts/to_usy.js'), array(), false, true);
           wp_enqueue_script('to_us');
           //Register converted alphabet style
           wp_register_style('ltr-style', get_template_directory() . '/ltr.css');
           wp_enqueue_style('ltr-style');
      } else if ($_SESSION['uls'] == "uu") {
           //Todo: Add latin to unicode and latin to crillic
-          // wp_register_script('to_uu', plugins_url('/epchilem/scripts/to_uy.js'), array(), false, true);
+          // wp_register_script('to_uu', plugins_url('/wp-uighur-uls/scripts/to_uy.js'), array(), false, true);
           // wp_enqueue_script('to_uu');
           //Register converted alphabet style
           // wp_register_style('rtl-style', get_template_directory() . '/rtl.css');

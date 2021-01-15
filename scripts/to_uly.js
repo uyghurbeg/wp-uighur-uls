@@ -118,7 +118,7 @@ function uly2upper ( s ) {
    for ( var i = 0; i < s.length ; i++ ) {
       t = s.charAt(i); 
       l = t.toLowerCase(); 
-      u = t.toUpperCase(); 
+      u = t.toLowerCase(); 
 
       if ( l != u && up ) { // if character has upper case and upper case is requested
          arr[i] = u; 
@@ -349,7 +349,7 @@ function pfinit ( )
   
    for ( i = 0; i < cm.length; i++ ) {
      if ( cm[i] != 0 ) {
-       var u = gac(gas(i).toUpperCase());
+       var u = gac(gas(i).toLowerCase());
        if ( cm[u] == 0 ) {
          cm[u] = cm[i];
        }
@@ -723,7 +723,6 @@ function uy2uly ( str ) {
       if ( wc == HAMZA ) {
          continue ;
       }
-
       // first handle Uyghur letters that become joint letters in Latin
       if ( wc == CHEE ) {
          arr[j++] = gac('c');
@@ -984,7 +983,7 @@ function bedit_init ( ) {
 
   for ( i = 0; i < km.length; i++ ) {
     if ( km[i] != 0 ) {
-      var u = gac(gas(i).toUpperCase());
+      var u = gac(gas(i).toLowerCase());
       if ( km[u] == 0 ) {
         km[u] = km[i];
       }
@@ -1052,7 +1051,7 @@ function bedit_init ( ) {
 
   for ( i = 0; i < cm.length; i++ ) {
     if ( cm[i] != 0 ) {
-      var u = gac(gas(i).toUpperCase());
+      var u = gac(gas(i).toLowerCase());
       if ( cm[u] == 0 ) {
         cm[u] = cm[i];
       }
