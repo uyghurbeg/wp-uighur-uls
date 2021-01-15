@@ -4,7 +4,7 @@
  */
 
 var tempIMGArray = [];
-var tempSrcArray = [];
+var tempHrefArray = [];
 
 var BASELEN = 256;
 
@@ -99,14 +99,15 @@ function from_unicode(to, str) {
         return br2pf(str);
     } else if (to == 'uly') {
         var s = uy2uly(str);
+        s = uly2href(s);
         s = uly2image(s);
-        s = uly2upper(s);
+        //   s = uly2upper(s);
         tempIMGArray = [];
-        tempSrcArray = [];
+        tempHrefArray = [];
         return s;
     } else if (to == 'cyrillic') {
         tempIMGArray = [];
-        tempSrcArray = [];
+        tempHrefArray = [];
         return uy2cyr(str);
     }
 }
@@ -115,6 +116,14 @@ function from_unicode(to, str) {
 function uly2image(s) {
     for (let index = 0; index < tempIMGArray.length; index++) {
         s = s.replace(`$ULSIMG${index}$`, tempIMGArray[index]);
+    }
+    return s;
+}
+
+// replace URLHREF tag with original image tag
+function uly2href(s) {
+    for (let index = 0; index < tempHrefArray.length; index++) {
+        s = s.replace(`$urlhref${index}$`, tempHrefArray[index]);
     }
     return s;
 }
@@ -723,8 +732,15 @@ function uy2uly(str) {
 
     //Get All Image Tag and replace it
     tempIMGArray = str.match(/<img [^>]*src="[^"]*"[^>]*>/gm);
+    tempHrefArray = str.match(/href="([^\'\"]+)/g);
     for (let index = 0; index < tempIMGArray.length; index++) {
         str = str.replace(tempIMGArray[index], "$ULSIMG" + index + "$");
+    }
+    //Get URL with Uyghur chars
+    for (let index = 0; index < tempHrefArray.length; index++) {
+        if (tempHrefArray[index].includes("%d")) {
+            str = str.replace(tempHrefArray[index], "$ULSHREF" + index + "$");
+        }
     }
 
     for (i = 0; i < str.length; i++) {
