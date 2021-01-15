@@ -258,7 +258,6 @@ function get_src_value()
    if ( d ) {
       src = d.options[d.selectedIndex].value;
    }
-
    return src;
 }
 
@@ -270,7 +269,7 @@ function get_dest_value()
    if ( d ) {
       dest = d.options[d.selectedIndex].value;
    }
-
+   
    return dest;
 }
 

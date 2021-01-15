@@ -1532,4 +1532,4 @@ function naddchar(event)
   return true;
 }
 
-do_convert("cyrillic", "unicode");
+do_convert("unicode", "cyrillic");

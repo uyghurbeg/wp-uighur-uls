@@ -1530,4 +1530,4 @@ function naddchar(event)
   return true;
 }
 
-do_convert("unicode", "uly");
+do_convert("unicode", "unicode");
