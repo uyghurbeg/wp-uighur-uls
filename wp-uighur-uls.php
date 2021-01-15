@@ -26,19 +26,6 @@ function insert_convert_file()
 }
 add_action('wp_enqueue_scripts', 'insert_convert_file');
 
-function insert_before_post($content)
-{
-     if (is_single()) {
-          $beforecontent = '<div class="wp-uighur-uls" style=" padding-right: 60px; padding-top: 6px;  text-transform: lowercase; !important"> <a href="?uls=us">&#1059;&#1081;&#1171;&#1091;&#1088;&#1095;&#1241;</a> | <a href="?uls=ul">&#85;&#121;&#103;&#104;&#117;&#114;&#99;&#104;&#101;</a> | <a href="?uls=uu">&#1574;&#1735;&#1610;&#1594;&#1735;&#1585;&#1670;&#1749;</a> </div>';
-     } else {
-          $beforecontent = '';
-     }
-     $fullcontent = $beforecontent . $content;
-
-     return $fullcontent;
-}
-add_filter('the_content', 'insert_before_post');
-
 function setup_session()
 {
      if (isset($_GET['uls'])) {
