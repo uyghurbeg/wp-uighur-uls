@@ -45,6 +45,20 @@ function setup_session()
                $_SESSION['uls'] = "uu";
           }
      }
+
+     if (isset($_GET['Uls'])) {
+          if ($_GET['Uls'] == 'ul') {
+               $_SESSION['uls'] = "ul";
+          } else if ($_GET['Uls'] == 'us') {
+               $_SESSION['uls'] = "us";
+          } else if ($_GET['Uls'] == 'uu') {
+               $_SESSION['uls'] = "uu";
+          }
+     } else {
+          if (!isset($_SESSION['uls'])) {
+               $_SESSION['uls'] = "uu";
+          }
+     }
 }
 
 function convert_alphabet()

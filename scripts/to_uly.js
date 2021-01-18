@@ -74,7 +74,7 @@ function do_convert(sf, df) {
     str = from_unicode(df, str);
     str = str.replace(/rtl/gi, "ltr");
     str = str.replace(/right/gi, "left");
-    str = '<div style="direction:ltr;text-align:justify;">' + str + '</div>';
+    str = str.replace('rtl.css', 'ltr.css')
     document.body.innerHTML = str
 }
 
@@ -101,7 +101,6 @@ function from_unicode(to, str) {
         var s = uy2uly(str);
         s = uly2href(s);
         s = uly2image(s);
-        // s = uly2upper(s);
         tempIMGArray = [];
         tempHrefArray = [];
         return s;
@@ -120,15 +119,6 @@ function uly2image(s) {
     return s;
 }
 
-// // replace URLHREF tag with original image tag
-// function uly2href(s) {
-//     for (let index = 0; index < tempHrefArray.length; index++) {
-//         s = s.replace(`$urlhref${index}$`, tempHrefArray[index]);
-//     }
-//     return s;
-// }
-
-// make the first letters of sentences upper case
 function uly2upper(s) {
     var up = true;
     var t, prev, u;
