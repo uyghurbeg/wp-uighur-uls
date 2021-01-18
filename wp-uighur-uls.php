@@ -49,20 +49,19 @@ function setup_session()
 
 function convert_alphabet()
 {
+     //Register convert script
+     wp_register_script('script', plugins_url('/wp-uighur-uls/scripts/script.js'), array(), false, true);
+     wp_enqueue_script('script');
      if ($_SESSION['uls'] == "ul") {
           //Register convert script
           wp_register_script('to_uly', plugins_url('/wp-uighur-uls/scripts/to_uly.js'), array(), false, true);
           wp_enqueue_script('to_uly');
           //Register converted alphabet style
-          wp_register_style('ltr-style', get_template_directory().'/ltr.css');
-          wp_enqueue_style('ltr-style');
      } else if ($_SESSION['uls'] == "us") {
           //Register convert script
           wp_register_script('to_us', plugins_url('/wp-uighur-uls/scripts/to_usy.js'), array(), false, true);
           wp_enqueue_script('to_us');
           //Register converted alphabet style
-          wp_register_style('ltr-style', get_template_directory() . '/ltr.css');
-          wp_enqueue_style('ltr-style');
      } else if ($_SESSION['uls'] == "uu") {
           //Todo: Add latin to unicode and latin to crillic
           // wp_register_script('to_uu', plugins_url('/wp-uighur-uls/scripts/to_uy.js'), array(), false, true);

@@ -101,7 +101,7 @@ function from_unicode(to, str) {
         var s = uy2uly(str);
         s = uly2href(s);
         s = uly2image(s);
-        //   s = uly2upper(s);
+        // s = uly2upper(s);
         tempIMGArray = [];
         tempHrefArray = [];
         return s;
@@ -120,13 +120,13 @@ function uly2image(s) {
     return s;
 }
 
-// replace URLHREF tag with original image tag
-function uly2href(s) {
-    for (let index = 0; index < tempHrefArray.length; index++) {
-        s = s.replace(`$urlhref${index}$`, tempHrefArray[index]);
-    }
-    return s;
-}
+// // replace URLHREF tag with original image tag
+// function uly2href(s) {
+//     for (let index = 0; index < tempHrefArray.length; index++) {
+//         s = s.replace(`$urlhref${index}$`, tempHrefArray[index]);
+//     }
+//     return s;
+// }
 
 // make the first letters of sentences upper case
 function uly2upper(s) {
@@ -142,7 +142,7 @@ function uly2upper(s) {
     for (var i = 0; i < s.length; i++) {
         t = s.charAt(i);
         l = t.toLowerCase();
-        u = t.toLowerCase();
+        u = t.toUpperCase();
 
         if (l != u && up) { // if character has upper case and upper case is requested
             arr[i] = u;
