@@ -4,7 +4,6 @@
  */
 
 var tempIMGArray = [];
-var tempHrefArray = [];
 
 var BASELEN = 256;
 
@@ -59,23 +58,24 @@ var CQUOTE = 0x00BB; // for closing quote
 var BPAD = 0x0600;
 
 function do_convert(sf, df) {
-    var sf = sf;
-    var df = df;
+  var sf = sf;
+  var df = df;
 
-    var s = document.body.innerHTML;
-    var str = "";
+  var s = document.body.innerHTML;
+  var str = "";
 
-    if (sf == df) {
-        set_dest_text(s);
-        return;
-    }
+  if (sf == df) {
+    set_dest_text(s);
+    return;
+  }
 
-    str = to_unicode(sf, s);
-    str = from_unicode(df, str);
-    str = str.replace(/rtl/gi, "ltr");
-    str = str.replace(/right/gi, "left");
-    str = str.replace('rtl.css', 'ltr.css')
-    document.body.innerHTML = str
+  str = to_unicode(sf, s);
+  str = from_unicode(df, str);
+  str = str.replace(/rtl/gi, "ltr");
+  str = str.replace(/right/gi, "left");
+  str = str.replace("rtl.css", "ltr.css");
+  str = '<div style="direction:ltr;">' + str + "</div>";
+  document.body.innerHTML = str;
 }
 
 function to_unicode(from, str) {
@@ -99,14 +99,11 @@ function from_unicode(to, str) {
         return br2pf(str);
     } else if (to == 'uly') {
         var s = uy2uly(str);
-        s = uly2href(s);
         s = uly2image(s);
         tempIMGArray = [];
-        tempHrefArray = [];
         return s;
     } else if (to == 'cyrillic') {
         tempIMGArray = [];
-        tempHrefArray = [];
         return uy2cyr(str);
     }
 }
@@ -722,15 +719,8 @@ function uy2uly(str) {
 
     //Get All Image Tag and replace it
     tempIMGArray = str.match(/<img [^>]*src="[^"]*"[^>]*>/gm);
-    tempHrefArray = str.match(/href="([^\'\"]+)/g);
     for (let index = 0; index < tempIMGArray.length; index++) {
         str = str.replace(tempIMGArray[index], "$ULSIMG" + index + "$");
-    }
-    //Get URL with Uyghur chars
-    for (let index = 0; index < tempHrefArray.length; index++) {
-        if (tempHrefArray[index].includes("%d")) {
-            str = str.replace(tempHrefArray[index], "$ULSHREF" + index + "$");
-        }
     }
 
     for (i = 0; i < str.length; i++) {

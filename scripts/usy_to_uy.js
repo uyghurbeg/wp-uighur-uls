@@ -73,6 +73,7 @@ function do_convert(sf, df) {
     str = str.replace(/ltr/gi, "rtl");
     str = str.replace(/left/gi, "right");
     str = str.replace("ltr.css", "rtl.css");
+    str = '<div style="direction:rtl;">' + str + "</div>";
     document.body.innerHTML = str
 }
 

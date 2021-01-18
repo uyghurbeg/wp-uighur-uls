@@ -3,6 +3,7 @@
  * License: GPL
  */
 
+var tempIMGArray = [];
 
 var BASELEN = 256;
 
@@ -73,6 +74,7 @@ function do_convert(sf, df) {
     str = str.replace(/rtl/gi, "ltr");
     str = str.replace(/right/gi, "left");
     str = str.replace("rtl.css", "ltr.css");
+    str = '<div style="direction:ltr;">' + str + "</div>";
     document.getElementsByTagName("BODY")[0].innerHTML = str;
 }
 
@@ -100,8 +102,18 @@ function from_unicode(to, str) {
         s = uly2upper(s);
         return s;
     } else if (to == 'cyrillic') {
-        return uy2cyr(str);
+        var s = uy2cyr(str);
+        s = uly2image(s);
+        return s;
     }
+}
+
+// replace URLIMG tag with original image tag
+function uly2image(s) {
+    for (let index = 0; index < tempIMGArray.length; index++) {
+        s = s.replace(`$ULSIMG${index}$`, tempIMGArray[index]);
+    }
+    return s;
 }
 
 // make the first letters of sentences upper case
@@ -770,6 +782,12 @@ function uy2cyr(uystr) {
 
     var str = uystr.replace(new RegExp('يا', 'g'), "я");
     str = str.replace(new RegExp('يۇ', 'g'), "ю");
+
+    //Get All Image Tag and replace it
+    tempIMGArray = str.match(/<img [^>]*src="[^"]*"[^>]*>/gm);
+    for (let index = 0; index < tempIMGArray.length; index++) {
+        str = str.replace(tempIMGArray[index], "$ULSIMG" + index + "$");
+    }
 
     j = 0;
     for (i = 0; i < str.length; i++) {
