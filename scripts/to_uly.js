@@ -71,8 +71,6 @@ function do_convert(sf, df) {
 
   str = to_unicode(sf, s);
   str = from_unicode(df, str);
-  str = str.replace(/rtl/gi, "ltr");
-  str = str.replace(/right/gi, "left");
   str = str.replace("rtl.css", "ltr.css");
   str = '<div style="direction:ltr;">' + str + "</div>";
   document.body.innerHTML = str;
