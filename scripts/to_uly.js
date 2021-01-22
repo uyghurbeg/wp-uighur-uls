@@ -98,6 +98,7 @@ function from_unicode(to, str) {
     } else if (to == 'uly') {
         var s = uy2uly(str);
         s = uly2image(s);
+        s = uly2upper(s);
         tempIMGArray = [];
         return s;
     } else if (to == 'cyrillic') {

@@ -1,8 +1,9 @@
 <?php
+
 /**
- * Plugin Name:       WP-Uighur-ULS
- * Plugin URI:        https://github.com/uyghurbeg/WP-Uighur-ULS
- * Description:       Handle the basics with this plugin.
+ * Plugin Name:       wp-uighur-uls
+ * Plugin URI:        https://github.com/uyghurbeg/wp-uighur-uls
+ * Description:       ئۇيغۇر ئەرەب ئېلىپبەسىنى ئۇيغۇر لاتىن ئېلىپبەسى ۋە ئۇيغۇر كىرىل ئېلىپبەسىگە ئايلاندۇرىدىغان Wordpress قىستۇرمىسى | A Wordpress plugin to convert Uyghur Arabic Alphabet to Uyghur Laten Alphabet and Uyghur Crillic Alphabet
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
@@ -10,7 +11,7 @@
  * Author URI:        https://uyghur.blog
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       WP-Uighur-ULS
+ * Text Domain:       wp-uighur-uls
  * Domain Path:       /plugins
  */
 
@@ -37,9 +38,17 @@ function setup_session()
                $_SESSION['uls'] = "ul";
           } else if ($_GET['uls'] == 'us') {
                $_SESSION['uls'] = "us";
-          }  else if ($_GET['uls'] == 'uu') {
+          } else if ($_GET['uls'] == 'uu') {
                $_SESSION['uls'] = "uu";
-          }  
+          }
+     } else if (isset($_GET['Uls'])) {
+          if ($_GET['Uls'] == 'ul') {
+               $_SESSION['uls'] = "ul";
+          } else if ($_GET['Uls'] == 'us') {
+               $_SESSION['uls'] = "us";
+          } else if ($_GET['Uls'] == 'uu') {
+               $_SESSION['uls'] = "uu";
+          }
      } else {
           if (!isset($_SESSION['uls'])) {
                $_SESSION['uls'] = "uu";
