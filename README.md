@@ -8,9 +8,6 @@ A Wordpress Plugin to convert UEY to ULY/USY
 
 Wordpress Uchun Uyghurche Yeziqlarni almashturush qisturmisi
 
-
-Salam. Mezkur qisturma G.Toxti Kenji ependi teripidin yasalghan bolup, uning ruxsiti bilen, githubgha quyuldi. Kodning barliq hoquqi G.Toxti Kenji'ge mensuptur.
-
 Ishlitish Usuli:
 1. Hojjetlerni wp-content/plugins munderijige quyung
 2. We yaki arqa supidin .zip hojjetni yukleng
@@ -34,9 +31,6 @@ add_filter('the_content', 'insert_before_post');
 ```
 
 Unumini korush:
-
-Ortaq Turk yeziqi uchun:
-www.yourdomain.xxx/?uls=ut
 
 Uyghur Latin yeziqi uchun:
 www.yourdomain.xxx/?uls=ul
