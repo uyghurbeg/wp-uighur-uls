@@ -4,7 +4,7 @@
  * Plugin Name:       wp-uighur-uls
  * Plugin URI:        https://github.com/uyghurbeg/wp-uighur-uls
  * Description:       ئۇيغۇر ئەرەب ئېلىپبەسىنى ئۇيغۇر لاتىن ئېلىپبەسى ۋە ئۇيغۇر كىرىل ئېلىپبەسىگە ئايلاندۇرىدىغان Wordpress قىستۇرمىسى | A Wordpress plugin to convert Uyghur Arabic Alphabet to Uyghur Laten Alphabet and Uyghur Crillic Alphabet
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Uyghurbeg
@@ -34,36 +34,16 @@ add_action('wp_enqueue_scripts', 'insert_convert_file');
 function setup_session()
 {
      if (isset($_GET['uls'])) {
-          if ($_GET['uls'] == 'ul') {
+          if ($_GET['uls'] == 'ul') 
+          {
                $_SESSION['uls'] = "ul";
-          } else if ($_GET['uls'] == 'us') {
+          } else if ($_GET['uls'] == 'us') 
+          {
                $_SESSION['uls'] = "us";
-          } else if ($_GET['uls'] == 'uu') {
-               $_SESSION['uls'] = "uu";
-          }
-     } else if (isset($_GET['Uls'])) {
-          if ($_GET['Uls'] == 'ul') {
-               $_SESSION['uls'] = "ul";
-          } else if ($_GET['Uls'] == 'us') {
-               $_SESSION['uls'] = "us";
-          } else if ($_GET['Uls'] == 'uu') {
-               $_SESSION['uls'] = "uu";
-          }
-     } else {
-          if (!isset($_SESSION['uls'])) {
-               $_SESSION['uls'] = "uu";
-          }
-     }
-
-     if (isset($_GET['Uls'])) {
-          if ($_GET['Uls'] == 'ul') {
-               $_SESSION['uls'] = "ul";
-          } else if ($_GET['Uls'] == 'us') {
-               $_SESSION['uls'] = "us";
-          } else if ($_GET['Uls'] == 'uu') {
-               $_SESSION['uls'] = "uu";
-          }
-     } else {
+          } else if ($_GET['uls'] == 'uu') 
+          {
+            $_SESSION['uls'] = "uu";
+          } else {
           if (!isset($_SESSION['uls'])) {
                $_SESSION['uls'] = "uu";
           }
