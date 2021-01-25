@@ -99,12 +99,23 @@ function from_unicode(to, str) {
         var s = uy2uly(str);
         s = uly2image(s);
         s = uly2upper(s);
+        s = params2lowercase(s);
         tempIMGArray = [];
         return s;
     } else if (to == 'cyrillic') {
         tempIMGArray = [];
         return uy2cyr(str);
     }
+}
+
+//replace uppercase parameters to lowercase
+function params2lowercase (s){
+    let regex = /\?[A-Q]/g
+        var modified = s.replace(regex, function(match) {
+        return match.toLowerCase();
+    });
+    
+    return modified;
 }
 
 // replace URLIMG tag with original image tag
