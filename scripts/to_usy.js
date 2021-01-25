@@ -100,13 +100,25 @@ function from_unicode(to, str) {
     } else if (to == 'uly') {
         var s = uy2uly(str);
         s = uly2upper(s);
+        s = params2lowercase(s);
         return s;
     } else if (to == 'cyrillic') {
         var s = uy2cyr(str);
         s = uly2image(s);
+        s = params2lowercase(s);
         tempIMGArray = [];
         return s;
     }
+}
+
+//replace uppercase parameters to lowercase
+function params2lowercase (s){
+    let regex = /\?[A-Q]/g
+        var modified = s.replace(regex, function(match) {
+        return match.toLowerCase();
+    });
+    
+    return modified;
 }
 
 // replace URLIMG tag with original image tag
